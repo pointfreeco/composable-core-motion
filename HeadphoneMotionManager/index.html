@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ComposableCoreMotion - HeadphoneMotionManager</title>
-    <link rel="stylesheet" type="text/css" href="/swift-composable-architecture/all.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/composable-core-motion/all.css" media="all" />
 </head>
 <body>
     <header>
-        <a href="/swift-composable-architecture/">
+        <a href="/composable-core-motion/">
             <strong>
                 ComposableCoreMotion
             </strong>
@@ -48,7 +48,7 @@ effects and actions, making it easy to use with the Composable Architecture, and
         
         <h3>Nested Types</h3>
 <dl>
-    <dt class="enumeration"><code><a href="/swift-composable-architecture/HeadphoneMotionManager_Action">HeadphoneMotionManager.Action</a></code></dt>
+    <dt class="enumeration"><code><a href="/composable-core-motion/HeadphoneMotionManager_Action">HeadphoneMotionManager.Action</a></code></dt>
 <dd><p>Actions that correspond to <code>CMHeadphoneMotionManagerDelegate</code> methods.</p>
 </dd>
 </dl>
@@ -60,8 +60,8 @@ effects and actions, making it easy to use with the Composable Architecture, and
     <h3>
         <code>init(create:​destroy:​device​Motion:​is​Device​Motion​Active:​is​Device​Motion​Available:​start​Device​Motion​Updates:​stop​Device​Motion​Updates:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">create</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Action</span>, <span class="type">Never</span>&gt;, <span class="variable">destroy</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;, <span class="variable">deviceMotion</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>?, <span class="variable">isDeviceMotionActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">isDeviceMotionAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">startDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">OperationQueue</span>) -&gt;
-      <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt;, <span class="variable">stopDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;)</code></pre></body></html>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">create</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Action</span>, <span class="type">Never</span>&gt;, <span class="variable">destroy</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;, <span class="variable">deviceMotion</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/composable-core-motion/DeviceMotion"><span class="type">DeviceMotion</span></a>?, <span class="variable">isDeviceMotionActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">isDeviceMotionAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">startDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">OperationQueue</span>) -&gt;
+      <span class="type">Effect</span>&lt;<a href="/composable-core-motion/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt;, <span class="variable">stopDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;)</code></pre></body></html>
 </div>
     </section>
     <section id="properties">
@@ -111,7 +111,7 @@ when you leave a screen or no longer need motion data.</p>
     <h3>
         <code>device​Motion(id:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">deviceMotion</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>?</code></pre></body></html>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">deviceMotion</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <a href="/composable-core-motion/DeviceMotion"><span class="type">DeviceMotion</span></a>?</code></pre></body></html>
 <div class="summary" role="doc-abstract">
     <p>The latest sample of device-motion data.</p>
 
@@ -142,7 +142,7 @@ service.</p>
     <h3>
         <code>start​Device​Motion​Updates(id:​to:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">startDeviceMotionUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>, <span class="variable">to</span> <span class="variable">queue</span>: <span class="type">OperationQueue</span> = .<span class="variable">main</span>) -&gt; <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt;</code></pre></body></html>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">startDeviceMotionUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>, <span class="variable">to</span> <span class="variable">queue</span>: <span class="type">OperationQueue</span> = .<span class="variable">main</span>) -&gt; <span class="type">Effect</span>&lt;<a href="/composable-core-motion/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt;</code></pre></body></html>
 <div class="summary" role="doc-abstract">
     <p>Starts device-motion updates without a block handler.</p>
 
@@ -167,15 +167,15 @@ manager receives a new value.</p>
     <h3>
         <code>unimplemented(create:​destroy:​device​Motion:​is​Device​Motion​Active:​is​Device​Motion​Available:​start​Device​Motion​Updates:​stop​Device​Motion​Updates:​)</code>
     </h3>
-    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">unimplemented</span>(<span class="variable">create</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Action</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">create</span><span class="string literal">"</span>) }, <span class="variable">destroy</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">destroy</span><span class="string literal">"</span>) }, <span class="variable">deviceMotion</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>? = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">deviceMotion</span><span class="string literal">"</span>)
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">unimplemented</span>(<span class="variable">create</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Action</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">create</span><span class="string literal">"</span>) }, <span class="variable">destroy</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">destroy</span><span class="string literal">"</span>) }, <span class="variable">deviceMotion</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/composable-core-motion/DeviceMotion"><span class="type">DeviceMotion</span></a>? = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">deviceMotion</span><span class="string literal">"</span>)
     }, <span class="variable">isDeviceMotionActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span>
       <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isDeviceMotionActive</span><span class="string literal">"</span>)
     }, <span class="variable">isDeviceMotionAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span>
       <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isDeviceMotionAvailable</span><span class="string literal">"</span>)
     }, <span class="variable">startDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">OperationQueue</span>) -&gt;
-      <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt; = { <span class="keyword">_</span>, <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">startDeviceMotionUpdates</span><span class="string literal">"</span>) }, <span class="variable">stopDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span>
+      <span class="type">Effect</span>&lt;<a href="/composable-core-motion/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt; = { <span class="keyword">_</span>, <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">startDeviceMotionUpdates</span><span class="string literal">"</span>) }, <span class="variable">stopDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span>
       <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">stopDeviceMotionUpdates</span><span class="string literal">"</span>)
-    }) -&gt; <a href="/swift-composable-architecture/HeadphoneMotionManager"><span class="type">HeadphoneMotionManager</span></a></code></pre></body></html>
+    }) -&gt; <a href="/composable-core-motion/HeadphoneMotionManager"><span class="type">HeadphoneMotionManager</span></a></code></pre></body></html>
 </div>
     </section>
 
@@ -186,7 +186,7 @@ manager receives a new value.</p>
 
     <footer>
         <p>
-    Generated on <time datetime="2020-10-29T17:12:19+0000">October 29, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+    Generated on <time datetime="2020-10-29T19:21:02+0000">October 29, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
 </p>
     </footer>
 </body>
