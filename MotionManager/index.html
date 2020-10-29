@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComposableCoreMotion - MotionManager</title>
+    <link rel="stylesheet" type="text/css" href="/swift-composable-architecture/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/swift-composable-architecture/">
+            <strong>
+                ComposableCoreMotion
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Nested Types</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#motionmanager.init(accelerometerdata:attitudereferenceframe:availableattitudereferenceframes:create:destroy:devicemotion:gyrodata:isaccelerometeractive:isaccelerometeravailable:isdevicemotionactive:isdevicemotionavailable:isgyroactive:isgyroavailable:ismagnetometeractive:ismagnetometeravailable:magnetometerdata:set:startaccelerometerupdates:startdevicemotionupdates:startgyroupdates:startmagnetometerupdates:stopaccelerometerupdates:stopdevicemotionupdates:stopgyroupdates:stopmagnetometerupdates:)">init(accelerometer​Data:​attitude​Reference​Frame:​available​Attitude​Reference​Frames:​create:​destroy:​device​Motion:​gyro​Data:​is​Accelerometer​Active:​is​Accelerometer​Available:​is​Device​Motion​Active:​is​Device​Motion​Available:​is​Gyro​Active:​is​Gyro​Available:​is​Magnetometer​Active:​is​Magnetometer​Available:​magnetometer​Data:​set:​start​Accelerometer​Updates:​start​Device​Motion​Updates:​start​Gyro​Updates:​start​Magnetometer​Updates:​stop​Accelerometer​Updates:​stop​Device​Motion​Updates:​stop​Gyro​Updates:​stop​Magnetometer​Updates:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#motionmanager.live">live</a></li></ul></li><li><a href="#methods">Methods</a><ul><li class="function"><a href="#motionmanager.accelerometerdata(id:)">accelerometer​Data(id:​)</a></li><li class="function"><a href="#motionmanager.attitudereferenceframe(id:)">attitude​Reference​Frame(id:​)</a></li><li class="function"><a href="#motionmanager.create(id:)">create(id:​)</a></li><li class="function"><a href="#motionmanager.destroy(id:)">destroy(id:​)</a></li><li class="function"><a href="#motionmanager.devicemotion(id:)">device​Motion(id:​)</a></li><li class="function"><a href="#motionmanager.gyrodata(id:)">gyro​Data(id:​)</a></li><li class="function"><a href="#motionmanager.isaccelerometeractive(id:)">is​Accelerometer​Active(id:​)</a></li><li class="function"><a href="#motionmanager.isaccelerometeravailable(id:)">is​Accelerometer​Available(id:​)</a></li><li class="function"><a href="#motionmanager.isdevicemotionactive(id:)">is​Device​Motion​Active(id:​)</a></li><li class="function"><a href="#motionmanager.isdevicemotionavailable(id:)">is​Device​Motion​Available(id:​)</a></li><li class="function"><a href="#motionmanager.isgyroactive(id:)">is​Gyro​Active(id:​)</a></li><li class="function"><a href="#motionmanager.isgyroavailable(id:)">is​Gyro​Available(id:​)</a></li><li class="function"><a href="#motionmanager.ismagnetometeractive(id:)">is​Magnetometer​Active(id:​)</a></li><li class="function"><a href="#motionmanager.ismagnetometeravailable(id:)">is​Magnetometer​Available(id:​)</a></li><li class="function"><a href="#motionmanager.magnetometerdata(id:)">magnetometer​Data(id:​)</a></li><li class="function"><a href="#motionmanager.set(id:accelerometerupdateinterval:devicemotionupdateinterval:gyroupdateinterval:magnetometerupdateinterval:showsdevicemovementdisplay:)">set(id:​accelerometer​Update​Interval:​device​Motion​Update​Interval:​gyro​Update​Interval:​magnetometer​Update​Interval:​shows​Device​Movement​Display:​)</a></li><li class="function"><a href="#motionmanager.startaccelerometerupdates(id:to:)">start​Accelerometer​Updates(id:​to:​)</a></li><li class="function"><a href="#motionmanager.startdevicemotionupdates(id:using:to:)">start​Device​Motion​Updates(id:​using:​to:​)</a></li><li class="function"><a href="#motionmanager.startgyroupdates(id:to:)">start​Gyro​Updates(id:​to:​)</a></li><li class="function"><a href="#motionmanager.startmagnetometerupdates(id:to:)">start​Magnetometer​Updates(id:​to:​)</a></li><li class="function"><a href="#motionmanager.stopaccelerometerupdates(id:)">stop​Accelerometer​Updates(id:​)</a></li><li class="function"><a href="#motionmanager.stopdevicemotionupdates(id:)">stop​Device​Motion​Updates(id:​)</a></li><li class="function"><a href="#motionmanager.stopgyroupdates(id:)">stop​Gyro​Updates(id:​)</a></li><li class="function"><a href="#motionmanager.stopmagnetometerupdates(id:)">stop​Magnetometer​Updates(id:​)</a></li><li class="function"><a href="#motionmanager.unimplemented(accelerometerdata:attitudereferenceframe:availableattitudereferenceframes:create:destroy:devicemotion:gyrodata:isaccelerometeractive:isaccelerometeravailable:isdevicemotionactive:isdevicemotionavailable:isgyroactive:isgyroavailable:ismagnetometeractive:ismagnetometeravailable:magnetometerdata:set:startaccelerometerupdates:startdevicemotionupdates:startgyroupdates:startmagnetometerupdates:stopaccelerometerupdates:stopdevicemotionupdates:stopgyroupdates:stopmagnetometerupdates:)">unimplemented(accelerometer​Data:​attitude​Reference​Frame:​available​Attitude​Reference​Frames:​create:​destroy:​device​Motion:​gyro​Data:​is​Accelerometer​Active:​is​Accelerometer​Available:​is​Device​Motion​Active:​is​Device​Motion​Available:​is​Gyro​Active:​is​Gyro​Available:​is​Magnetometer​Active:​is​Magnetometer​Available:​magnetometer​Data:​set:​start​Accelerometer​Updates:​start​Device​Motion​Updates:​start​Gyro​Updates:​start​Magnetometer​Updates:​stop​Accelerometer​Updates:​stop​Device​Motion​Updates:​stop​Gyro​Updates:​stop​Magnetometer​Updates:​)</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Structure</small>
+    <code class="name">Motion​Manager</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="attribute">@</span><span class="attribute">available</span>(<span class="keyword">iOS</span> <span class="number literal">4.0</span>, *) <span class="attribute">@</span><span class="attribute">available</span>(<span class="keyword">macCatalyst</span> <span class="number literal">13.0</span>, *) <span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">macOS</span>, <span class="variable">unavailable</span>) <span class="attribute">@</span><span class="attribute">available</span>(<span class="variable">tvOS</span>, <span class="variable">unavailable</span>) <span class="attribute">@</span><span class="attribute">available</span>(<span class="keyword">watchOS</span> <span class="number literal">2.0</span>, *) <span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">MotionManager</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A wrapper around Core Motion's <code>CMMotionManager</code> that exposes its functionality through
+effects and actions, making it easy to use with the Composable Architecture, and easy to test.</p>
+
+</div>
+<div class="discussion">
+    <p>To use in your application, you can add an action to your feature's domain that represents the
+type of motion data you are interested in receiving. For example, if you only want motion
+updates, then you can add the following action:</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">import</span> <span class="variable">ComposableCoreLocation</span>
+
+<span class="keyword">enum</span> <span class="type">FeatureAction</span> {
+  <span class="keyword">case</span> <span class="variable">motionUpdate</span>(<span class="type">Result</span>&lt;<a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">NSError</span>&gt;)
+
+  <span class="comment">// Your feature's other actions:</span>
+  ...
+}
+</code></pre></body></html>
+<p>This action will be sent every time the motion manager receives new device motion data.</p>
+
+<p>Next, add a <code>MotionManager</code> type, which is a wrapper around a <code>CMMotionManager</code> that this
+library provides, to your feature's environment of dependencies:</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">struct</span> <span class="type">FeatureEnvironment</span> {
+  <span class="keyword">var</span> <span class="variable">motionManager</span>: <span class="type">MotionManager</span>
+
+  <span class="comment">// Your feature's other dependencies:</span>
+  ...
+}
+</code></pre></body></html>
+<p>Then, create a motion manager by returning an effect from our reducer. You can either do this
+when your feature starts up, such as when <code>onAppear</code> is invoked, or you can do it when a user
+action occurs, such as when the user taps a button.</p>
+
+<p>As an example, say we want to create a motion manager and start listening for motion updates
+when a &quot;Record&quot; button is tapped. Then we can can do both of those things by executing two
+effects, one after the other:</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">let</span> <span class="variable">featureReducer</span> = <span class="variable">Reducer</span>&lt;<span class="type">FeatureState</span>, <span class="type">FeatureAction</span>, <span class="type">FeatureEnvironment</span>&gt; {
+  <span class="variable">state</span>, <span class="variable">action</span>, <span class="variable">environment</span> <span class="keyword">in</span>
+
+  <span class="comment">// A unique identifier for our location manager, just in case we want to use</span>
+  <span class="comment">// more than one in our application.</span>
+  <span class="keyword">struct</span> <span class="type">MotionManagerId</span>: <span class="type">Hashable</span> {}
+
+  <span class="keyword">switch</span> <span class="variable">action</span> {
+  <span class="keyword">case</span> .<span class="variable">recordingButtonTapped</span>:
+    <span class="keyword">return</span> .<span class="variable">concatenate</span>(
+      <span class="variable">environment</span>.<span class="type">motionManager</span>
+        .<span class="type">create</span>(<span class="variable">id</span>: <span class="type">MotionManagerId</span>())
+        .<span class="type">fireAndForget</span>(),
+
+      <span class="variable">environment</span>.<span class="type">motionManager</span>
+        .<span class="type">startDeviceMotionUpdates</span>(
+          <span class="variable">id</span>: <span class="type">MotionManagerId</span>(),
+          <span class="variable">using</span>: .<span class="variable">xArbitraryZVertical</span>,
+          <span class="variable">to</span>: .<span class="variable">main</span>
+        )
+        .<span class="type">mapError</span> { <span class="variable">$0</span> <span class="keyword">as</span> <span class="type">NSError</span> }
+        .<span class="type">catchToEffect</span>()
+        .<span class="type">map</span>(<span class="variable">AppAction</span>.<span class="type">motionUpdate</span>)
+    )
+
+  ...
+  }
+}
+</code></pre></body></html>
+<p>After those effects are executed you will get a steady stream of device motion updates sent to
+the <code>.motionUpdate</code> action, which you can handle in the reducer. For example, to compute how
+much the device is moving up and down we can take the dot product of the device's gravity
+vector with the device's acceleration vector, and we could store that in the feature's state:</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">case</span> <span class="keyword">let</span> .<span class="variable">motionUpdate</span>(.<span class="variable">success</span>(<span class="variable">deviceMotion</span>)):
+   <span class="type">state</span>.<span class="type">zs</span>.<span class="type">append</span>(
+     <span class="variable">motion</span>.<span class="type">gravity</span>.<span class="type">x</span> * <span class="variable">motion</span>.<span class="type">userAcceleration</span>.<span class="type">x</span>
+       + <span class="variable">motion</span>.<span class="type">gravity</span>.<span class="type">y</span> * <span class="variable">motion</span>.<span class="type">userAcceleration</span>.<span class="type">y</span>
+       + <span class="variable">motion</span>.<span class="type">gravity</span>.<span class="type">z</span> * <span class="variable">motion</span>.<span class="type">userAcceleration</span>.<span class="type">z</span>
+   )
+
+<span class="keyword">case</span> <span class="keyword">let</span> .<span class="variable">motionUpdate</span>(.<span class="variable">failure</span>(<span class="variable">error</span>)):
+  <span class="comment">// Do something with the motion update failure, like show an alert.</span>
+</code></pre></body></html>
+<p>And then later, if you want to stop receiving motion updates, such as when a &quot;Stop&quot; button is
+tapped, we can execute an effect to stop the motion manager, and even fully destroy it if we
+don't need the manager anymore:</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">case</span> .<span class="variable">stopButtonTapped</span>:
+  <span class="keyword">return</span> .<span class="variable">concatenate</span>(
+    <span class="variable">environment</span>.<span class="type">motionManager</span>
+      .<span class="variable">stopDeviceMotionUpdates</span>(<span class="variable">id</span>: <span class="type">MotionManagerId</span>())
+      .<span class="variable">fireAndForget</span>(),
+
+    <span class="variable">environment</span>.<span class="type">motionManager</span>
+      .<span class="variable">destroy</span>(<span class="variable">id</span>: <span class="type">MotionManagerId</span>())
+      .<span class="variable">fireAndForget</span>()
+  )
+</code></pre></body></html>
+<p>That is enough to implement a basic application that interacts with Core Motion.</p>
+
+<p>But the true power of building your application and interfacing with Core Motion this way is
+the ability to instantly <em>test</em> how your application behaves with Core Motion. We start by
+creating a <code>TestStore</code> whose environment contains a <code>.unimplemented</code> version of the
+<code>MotionManager</code>. The <code>.unimplemented</code> function allows you to create a fully controlled version
+of the motion manager that does not deal with a real <code>CMMotionManager</code> at all. Instead, you
+override whichever endpoints your feature needs to supply deterministic functionality.</p>
+
+<p>For example, let's test that we property start the motion manager when we tap the record
+button, and that we compute the z-motion correctly, and further that we stop the motion
+manager when we tap the stop button. We can construct a <code>TestStore</code> with a mock motion manager
+that keeps track of when the manager is created and destroyed, and further we can even
+substitute in a subject that we control for device motion updates. This allows us to send any
+data we want to for the device motion.</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">func</span> <span class="function">testFeature</span>() {
+  <span class="keyword">let</span> <span class="variable">motionSubject</span> = <span class="variable">PassthroughSubject</span>&lt;<a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt;()
+  <span class="keyword">var</span> <span class="variable">motionManagerIsLive</span> = <span class="keyword">false</span>
+
+  <span class="keyword">let</span> <span class="variable">store</span> = <span class="variable">TestStore</span>(
+    <span class="variable">initialState</span>: .<span class="variable">init</span>(),
+    <span class="variable">reducer</span>: <span class="type">appReducer</span>,
+    <span class="variable">environment</span>: .<span class="variable">init</span>(
+      <span class="variable">motionManager</span>: .<span class="variable">unimplemented</span>(
+        <span class="variable">create</span>: { <span class="keyword">_</span> <span class="keyword">in</span> .<span class="variable">fireAndForget</span> { <span class="variable">motionManagerIsLive</span> = <span class="keyword">true</span> } },
+        <span class="variable">destroy</span>: { <span class="keyword">_</span> <span class="keyword">in</span> .<span class="variable">fireAndForget</span> { <span class="variable">motionManagerIsLive</span> = <span class="keyword">false</span> } },
+        <span class="variable">startDeviceMotionUpdates</span>: { <span class="keyword">_</span>, <span class="keyword">_</span>, <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">motionSubject</span>.<span class="type">eraseToEffect</span>() },
+        <span class="variable">stopDeviceMotionUpdates</span>: { <span class="keyword">_</span> <span class="keyword">in</span>
+          .<span class="variable">fireAndForget</span> { <span class="variable">motionSubject</span>.<span class="type">send</span>(<span class="variable">completion</span>: .<span class="variable">finished</span>) }
+        }
+      )
+    )
+  )
+}
+</code></pre></body></html>
+<p>We can then make an assertion on our store that plays a basic user script. We can simulate the
+situation in which a user taps the record button, then some device motion data is received,
+and finally the user taps the stop button. During that script of user actions we expect the
+motion manager to be started, then for some z-motion values to be accumulated, and finally for
+the motion manager to be stopped:</p>
+
+<html><body><pre class="highlight"><code><span class="keyword">let</span> <span class="variable">deviceMotion</span> = <span class="variable">DeviceMotion</span>(
+  <span class="variable">attitude</span>: .<span class="variable">init</span>(<span class="variable">quaternion</span>: .<span class="variable">init</span>(<span class="variable">x</span>: <span class="number literal">1</span>, <span class="variable">y</span>: <span class="number literal">0</span>, <span class="variable">z</span>: <span class="number literal">0</span>, <span class="variable">w</span>: <span class="number literal">0</span>)),
+  <span class="variable">gravity</span>: <span class="type">CMAcceleration</span>(<span class="variable">x</span>: <span class="number literal">1</span>, <span class="variable">y</span>: <span class="number literal">2</span>, <span class="variable">z</span>: <span class="number literal">3</span>),
+  <span class="variable">heading</span>: <span class="number literal">0</span>,
+  <span class="variable">magneticField</span>: .<span class="variable">init</span>(<span class="variable">field</span>: .<span class="variable">init</span>(<span class="variable">x</span>: <span class="number literal">0</span>, <span class="variable">y</span>: <span class="number literal">0</span>, <span class="variable">z</span>: <span class="number literal">0</span>), <span class="variable">accuracy</span>: .<span class="variable">high</span>),
+  <span class="variable">rotationRate</span>: .<span class="variable">init</span>(<span class="variable">x</span>: <span class="number literal">0</span>, <span class="variable">y</span>: <span class="number literal">0</span>, <span class="variable">z</span>: <span class="number literal">0</span>),
+  <span class="variable">timestamp</span>: <span class="number literal">0</span>,
+  <span class="variable">userAcceleration</span>: <span class="type">CMAcceleration</span>(<span class="variable">x</span>: <span class="number literal">4</span>, <span class="variable">y</span>: <span class="number literal">5</span>, <span class="variable">z</span>: <span class="number literal">6</span>)
+)
+
+<span class="variable">store</span>.<span class="type">assert</span>(
+  .<span class="variable">send</span>(.<span class="variable">recordingButtonTapped</span>) {
+    <span class="variable">XCTAssertEqual</span>(<span class="variable">motionManagerIsLive</span>, <span class="keyword">true</span>)
+  },
+  .<span class="variable">do</span> { <span class="variable">motionSubject</span>.<span class="type">send</span>(<span class="variable">deviceMotion</span>) },
+  .<span class="variable">receive</span>(.<span class="variable">motionUpdate</span>(.<span class="variable">success</span>(<span class="variable">deviceMotion</span>))) {
+    <span class="variable">$0</span>.<span class="type">zs</span> = [<span class="number literal">32</span>]
+  },
+  .<span class="variable">send</span>(.<span class="variable">stopButtonTapped</span>) {
+    <span class="variable">XCTAssertEqual</span>(<span class="variable">motionManagerIsLive</span>, <span class="keyword">false</span>)
+  }
+)
+</code></pre></body></html>
+<p>This is only the tip of the iceberg. We can access any part of the <code>CMMotionManager</code> API in
+this way, and instantly unlock testability with how the motion functionality integrates with
+our core application logic. This can be incredibly powerful, and is typically not the kind of
+thing one can test easily.</p>
+
+</div>
+<section id="relationships">
+    <h2 hidden>Relationships</h2>
+        
+        <h3>Nested Types</h3>
+<dl>
+    <dt class="structure"><code><a href="/swift-composable-architecture/MotionManager_Properties">MotionManager.Properties</a></code></dt>
+<dd></dd>
+</dl>
+</section>
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="motionmanager.init(accelerometerdata:attitudereferenceframe:availableattitudereferenceframes:create:destroy:devicemotion:gyrodata:isaccelerometeractive:isaccelerometeravailable:isdevicemotionactive:isdevicemotionavailable:isgyroactive:isgyroavailable:ismagnetometeractive:ismagnetometeravailable:magnetometerdata:set:startaccelerometerupdates:startdevicemotionupdates:startgyroupdates:startmagnetometerupdates:stopaccelerometerupdates:stopdevicemotionupdates:stopgyroupdates:stopmagnetometerupdates:)">
+    <h3>
+        <code>init(accelerometer​Data:​attitude​Reference​Frame:​available​Attitude​Reference​Frames:​create:​destroy:​device​Motion:​gyro​Data:​is​Accelerometer​Active:​is​Accelerometer​Available:​is​Device​Motion​Active:​is​Device​Motion​Available:​is​Gyro​Active:​is​Gyro​Available:​is​Magnetometer​Active:​is​Magnetometer​Available:​magnetometer​Data:​set:​start​Accelerometer​Updates:​start​Device​Motion​Updates:​start​Gyro​Updates:​start​Magnetometer​Updates:​stop​Accelerometer​Updates:​stop​Device​Motion​Updates:​stop​Gyro​Updates:​stop​Magnetometer​Updates:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">accelerometerData</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/AccelerometerData"><span class="type">AccelerometerData</span></a>?, <span class="variable">attitudeReferenceFrame</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">CMAttitudeReferenceFrame</span>, <span class="variable">availableAttitudeReferenceFrames</span>: <span class="attribute">@</span><span class="attribute">escaping</span> () -&gt; <span class="type">CMAttitudeReferenceFrame</span>, <span class="variable">create</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;, <span class="variable">destroy</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;, <span class="variable">deviceMotion</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>?, <span class="variable">gyroData</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/GyroData"><span class="type">GyroData</span></a>?, <span class="variable">isAccelerometerActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">isAccelerometerAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">isDeviceMotionActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">isDeviceMotionAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">isGyroActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">isGyroAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">isMagnetometerActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">isMagnetometerAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span>, <span class="variable">magnetometerData</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/MagnetometerData"><span class="type">MagnetometerData</span></a>?, <span class="variable">set</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">Properties</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;, <span class="variable">startAccelerometerUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">OperationQueue</span>) -&gt; <span class="type">Effect</span>&lt;
+        <a href="/swift-composable-architecture/AccelerometerData"><span class="type">AccelerometerData</span></a>, <span class="type">Error</span>
+      &gt;, <span class="variable">startDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">CMAttitudeReferenceFrame</span>, <span class="type">OperationQueue</span>) -&gt;
+        <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt;, <span class="variable">startGyroUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">OperationQueue</span>) -&gt; <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/GyroData"><span class="type">GyroData</span></a>, <span class="type">Error</span>&gt;, <span class="variable">startMagnetometerUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">OperationQueue</span>) -&gt; <span class="type">Effect</span>&lt;
+        <a href="/swift-composable-architecture/MagnetometerData"><span class="type">MagnetometerData</span></a>, <span class="type">Error</span>
+      &gt;, <span class="variable">stopAccelerometerUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;, <span class="variable">stopDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;, <span class="variable">stopGyroUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;, <span class="variable">stopMagnetometerUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;)</code></pre></body></html>
+</div>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="motionmanager.live">
+    <h3>
+        <code>live</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">let</span> <span class="variable">live</span></code></pre></body></html>
+</div>
+    </section>
+    <section id="methods">
+        <h2>Methods</h2>
+
+        <div role="article" class="function" id="motionmanager.accelerometerdata(id:)">
+    <h3>
+        <code>accelerometer​Data(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">accelerometerData</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/AccelerometerData"><span class="type">AccelerometerData</span></a>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The latest sample of accelerometer data.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.attitudereferenceframe(id:)">
+    <h3>
+        <code>attitude​Reference​Frame(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">attitudeReferenceFrame</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">CMAttitudeReferenceFrame</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Returns either the reference frame currently being used or the default attitude reference
+frame.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.create(id:)">
+    <h3>
+        <code>create(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">create</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Creates a motion manager.</p>
+
+</div>
+<div class="discussion">
+    <p>A motion manager must be first created before you can use its functionality, such as starting
+device motion updates or accessing data directly from the manager.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.destroy(id:)">
+    <h3>
+        <code>destroy(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">destroy</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Destroys a currently running motion manager.</p>
+
+</div>
+<div class="discussion">
+    <p>In is good practice to destroy a motion manager once you are done with it, such as when you
+leave a screen or no longer need motion data.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.devicemotion(id:)">
+    <h3>
+        <code>device​Motion(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">deviceMotion</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The latest sample of device-motion data.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.gyrodata(id:)">
+    <h3>
+        <code>gyro​Data(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">gyroData</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/GyroData"><span class="type">GyroData</span></a>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The latest sample of gyroscope data.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.isaccelerometeractive(id:)">
+    <h3>
+        <code>is​Accelerometer​Active(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">isAccelerometerActive</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A Boolean value that indicates whether accelerometer updates are currently happening.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.isaccelerometeravailable(id:)">
+    <h3>
+        <code>is​Accelerometer​Available(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">isAccelerometerAvailable</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A Boolean value that indicates whether an accelerometer is available on the device.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.isdevicemotionactive(id:)">
+    <h3>
+        <code>is​Device​Motion​Active(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">isDeviceMotionActive</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A Boolean value that determines whether the app is receiving updates from the device-motion
+service.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.isdevicemotionavailable(id:)">
+    <h3>
+        <code>is​Device​Motion​Available(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">isDeviceMotionAvailable</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A Boolean value that indicates whether the device-motion service is available on the device.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.isgyroactive(id:)">
+    <h3>
+        <code>is​Gyro​Active(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">isGyroActive</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A Boolean value that determines whether gyroscope updates are currently happening.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.isgyroavailable(id:)">
+    <h3>
+        <code>is​Gyro​Available(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">isGyroAvailable</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A Boolean value that indicates whether a gyroscope is available on the device.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.ismagnetometeractive(id:)">
+    <h3>
+        <code>is​Magnetometer​Active(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">isMagnetometerActive</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A Boolean value that determines whether magnetometer updates are currently happening.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.ismagnetometeravailable(id:)">
+    <h3>
+        <code>is​Magnetometer​Available(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">isMagnetometerAvailable</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span></code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>A Boolean value that indicates whether a magnetometer is available on the device.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.magnetometerdata(id:)">
+    <h3>
+        <code>magnetometer​Data(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">magnetometerData</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/MagnetometerData"><span class="type">MagnetometerData</span></a>?</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>The latest sample of magnetometer data.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.set(id:accelerometerupdateinterval:devicemotionupdateinterval:gyroupdateinterval:magnetometerupdateinterval:showsdevicemovementdisplay:)">
+    <h3>
+        <code>set(id:​accelerometer​Update​Interval:​device​Motion​Update​Interval:​gyro​Update​Interval:​magnetometer​Update​Interval:​shows​Device​Movement​Display:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">set</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>, <span class="variable">accelerometerUpdateInterval</span>: <span class="type">TimeInterval</span>? = <span class="keyword">nil</span>, <span class="variable">deviceMotionUpdateInterval</span>: <span class="type">TimeInterval</span>? = <span class="keyword">nil</span>, <span class="variable">gyroUpdateInterval</span>: <span class="type">TimeInterval</span>? = <span class="keyword">nil</span>, <span class="variable">magnetometerUpdateInterval</span>: <span class="type">TimeInterval</span>? = <span class="keyword">nil</span>, <span class="variable">showsDeviceMovementDisplay</span>: <span class="type">Bool</span>? = <span class="keyword">nil</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Sets certain properties on the motion manager.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.startaccelerometerupdates(id:to:)">
+    <h3>
+        <code>start​Accelerometer​Updates(id:​to:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">startAccelerometerUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>, <span class="variable">to</span> <span class="variable">queue</span>: <span class="type">OperationQueue</span> = .<span class="variable">main</span>) -&gt; <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/AccelerometerData"><span class="type">AccelerometerData</span></a>, <span class="type">Error</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Starts accelerometer updates without a handler.</p>
+
+</div>
+<div class="discussion">
+    <p>Returns a long-living effect that emits accelerometer data each time the motion manager
+receives a new value.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.startdevicemotionupdates(id:using:to:)">
+    <h3>
+        <code>start​Device​Motion​Updates(id:​using:​to:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">startDeviceMotionUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>, <span class="variable">using</span> <span class="variable">referenceFrame</span>: <span class="type">CMAttitudeReferenceFrame</span>, <span class="variable">to</span> <span class="variable">queue</span>: <span class="type">OperationQueue</span> = .<span class="variable">main</span>) -&gt; <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Starts device-motion updates without a block handler.</p>
+
+</div>
+<div class="discussion">
+    <p>Returns a long-living effect that emits device motion data each time the motion manager
+receives a new value.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.startgyroupdates(id:to:)">
+    <h3>
+        <code>start​Gyro​Updates(id:​to:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">startGyroUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>, <span class="variable">to</span> <span class="variable">queue</span>: <span class="type">OperationQueue</span> = .<span class="variable">main</span>) -&gt; <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/GyroData"><span class="type">GyroData</span></a>, <span class="type">Error</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Starts gyroscope updates without a handler.</p>
+
+</div>
+<div class="discussion">
+    <p>Returns a long-living effect that emits gyro data each time the motion manager receives a
+new value.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.startmagnetometerupdates(id:to:)">
+    <h3>
+        <code>start​Magnetometer​Updates(id:​to:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">startMagnetometerUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>, <span class="variable">to</span> <span class="variable">queue</span>: <span class="type">OperationQueue</span> = .<span class="variable">main</span>) -&gt; <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/MagnetometerData"><span class="type">MagnetometerData</span></a>, <span class="type">Error</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Starts magnetometer updates without a block handler.</p>
+
+</div>
+<div class="discussion">
+    <p>Returns a long-living effect that emits magnetometer data each time the motion manager
+receives a new value.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.stopaccelerometerupdates(id:)">
+    <h3>
+        <code>stop​Accelerometer​Updates(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">stopAccelerometerUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Stops accelerometer updates.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.stopdevicemotionupdates(id:)">
+    <h3>
+        <code>stop​Device​Motion​Updates(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">stopDeviceMotionUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Stops device-motion updates.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.stopgyroupdates(id:)">
+    <h3>
+        <code>stop​Gyro​Updates(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">stopGyroUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Stops gyroscope updates.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.stopmagnetometerupdates(id:)">
+    <h3>
+        <code>stop​Magnetometer​Updates(id:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">func</span> <span class="function">stopMagnetometerUpdates</span>(<span class="variable">id</span>: <span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt;</code></pre></body></html>
+<div class="summary" role="doc-abstract">
+    <p>Stops magnetometer updates.</p>
+
+</div>
+</div>
+<div role="article" class="function" id="motionmanager.unimplemented(accelerometerdata:attitudereferenceframe:availableattitudereferenceframes:create:destroy:devicemotion:gyrodata:isaccelerometeractive:isaccelerometeravailable:isdevicemotionactive:isdevicemotionavailable:isgyroactive:isgyroavailable:ismagnetometeractive:ismagnetometeravailable:magnetometerdata:set:startaccelerometerupdates:startdevicemotionupdates:startgyroupdates:startmagnetometerupdates:stopaccelerometerupdates:stopdevicemotionupdates:stopgyroupdates:stopmagnetometerupdates:)">
+    <h3>
+        <code>unimplemented(accelerometer​Data:​attitude​Reference​Frame:​available​Attitude​Reference​Frames:​create:​destroy:​device​Motion:​gyro​Data:​is​Accelerometer​Active:​is​Accelerometer​Available:​is​Device​Motion​Active:​is​Device​Motion​Available:​is​Gyro​Active:​is​Gyro​Available:​is​Magnetometer​Active:​is​Magnetometer​Available:​magnetometer​Data:​set:​start​Accelerometer​Updates:​start​Device​Motion​Updates:​start​Gyro​Updates:​start​Magnetometer​Updates:​stop​Accelerometer​Updates:​stop​Device​Motion​Updates:​stop​Gyro​Updates:​stop​Magnetometer​Updates:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">func</span> <span class="function">unimplemented</span>(<span class="variable">accelerometerData</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/AccelerometerData"><span class="type">AccelerometerData</span></a>? = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">accelerometerData</span><span class="string literal">"</span>)
+      }, <span class="variable">attitudeReferenceFrame</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">CMAttitudeReferenceFrame</span> = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">attitudeReferenceFrame</span><span class="string literal">"</span>)
+      }, <span class="variable">availableAttitudeReferenceFrames</span>: <span class="attribute">@</span><span class="attribute">escaping</span> () -&gt; <span class="type">CMAttitudeReferenceFrame</span> = {
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">availableAttitudeReferenceFrames</span><span class="string literal">"</span>)
+      }, <span class="variable">create</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">create</span><span class="string literal">"</span>) }, <span class="variable">destroy</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">destroy</span><span class="string literal">"</span>) }, <span class="variable">deviceMotion</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>? = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">deviceMotion</span><span class="string literal">"</span>)
+      }, <span class="variable">gyroData</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/GyroData"><span class="type">GyroData</span></a>? = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">gyroData</span><span class="string literal">"</span>) }, <span class="variable">isAccelerometerActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isAccelerometerActive</span><span class="string literal">"</span>)
+      }, <span class="variable">isAccelerometerAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isAccelerometerAvailable</span><span class="string literal">"</span>)
+      }, <span class="variable">isDeviceMotionActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isDeviceMotionActive</span><span class="string literal">"</span>)
+      }, <span class="variable">isDeviceMotionAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isDeviceMotionAvailable</span><span class="string literal">"</span>)
+      }, <span class="variable">isGyroActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isGyroActive</span><span class="string literal">"</span>) }, <span class="variable">isGyroAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isGyroAvailable</span><span class="string literal">"</span>) }, <span class="variable">isMagnetometerActive</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isMagnetometerActive</span><span class="string literal">"</span>)
+      }, <span class="variable">isMagnetometerAvailable</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Bool</span> = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">isMagnetometerAvailable</span><span class="string literal">"</span>)
+      }, <span class="variable">magnetometerData</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <a href="/swift-composable-architecture/MagnetometerData"><span class="type">MagnetometerData</span></a>? = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">magnetometerData</span><span class="string literal">"</span>)
+      }, <span class="variable">set</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <a href="/swift-composable-architecture/MotionManager"><span class="type">MotionManager</span></a>.<span class="type">Properties</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span>, <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">set</span><span class="string literal">"</span>)
+      }, <span class="variable">startAccelerometerUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">OperationQueue</span>) -&gt; <span class="type">Effect</span>&lt;
+        <a href="/swift-composable-architecture/AccelerometerData"><span class="type">AccelerometerData</span></a>, <span class="type">Error</span>
+      &gt; = { <span class="keyword">_</span>, <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">startAccelerometerUpdates</span><span class="string literal">"</span>) }, <span class="variable">startDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">CMAttitudeReferenceFrame</span>, <span class="type">OperationQueue</span>) -&gt;
+        <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/DeviceMotion"><span class="type">DeviceMotion</span></a>, <span class="type">Error</span>&gt; = { <span class="keyword">_</span>, <span class="keyword">_</span>, <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">startDeviceMotionUpdates</span><span class="string literal">"</span>) }, <span class="variable">startGyroUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">OperationQueue</span>) -&gt; <span class="type">Effect</span>&lt;<a href="/swift-composable-architecture/GyroData"><span class="type">GyroData</span></a>, <span class="type">Error</span>&gt; = {
+        <span class="keyword">_</span>, <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">startGyroUpdates</span><span class="string literal">"</span>)
+      }, <span class="variable">startMagnetometerUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>, <span class="type">OperationQueue</span>) -&gt; <span class="type">Effect</span>&lt;
+        <a href="/swift-composable-architecture/MagnetometerData"><span class="type">MagnetometerData</span></a>, <span class="type">Error</span>
+      &gt; = { <span class="keyword">_</span>, <span class="keyword">_</span> <span class="keyword">in</span> <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">startMagnetometerUpdates</span><span class="string literal">"</span>) }, <span class="variable">stopAccelerometerUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">stopAccelerometerUpdates</span><span class="string literal">"</span>)
+      }, <span class="variable">stopDeviceMotionUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">stopDeviceMotionUpdates</span><span class="string literal">"</span>)
+      }, <span class="variable">stopGyroUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">stopGyroUpdates</span><span class="string literal">"</span>)
+      }, <span class="variable">stopMagnetometerUpdates</span>: <span class="attribute">@</span><span class="attribute">escaping</span> (<span class="type">AnyHashable</span>) -&gt; <span class="type">Effect</span>&lt;<span class="type">Never</span>, <span class="type">Never</span>&gt; = { <span class="keyword">_</span> <span class="keyword">in</span>
+        <span class="variable">_unimplemented</span>(<span class="string literal">"</span><span class="string literal">stopMagnetometerUpdates</span><span class="string literal">"</span>)
+      }) -&gt; <a href="/swift-composable-architecture/MotionManager"><span class="type">MotionManager</span></a></code></pre></body></html>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-10-29T17:12:19+0000">October 29, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>

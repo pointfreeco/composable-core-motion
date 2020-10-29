@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComposableCoreMotion - MotionManager.Properties</title>
+    <link rel="stylesheet" type="text/css" href="/swift-composable-architecture/all.css" media="all" />
+</head>
+<body>
+    <header>
+        <a href="/swift-composable-architecture/">
+            <strong>
+                ComposableCoreMotion
+            </strong>
+            <span>Documentation</span>
+        </a>
+        <sup>Beta</sup>
+    </header>
+
+    <!--
+    <form class="search">
+        <input type="search" placeholder="Search" />
+    </form>
+    -->
+
+    <nav>
+        <div class="wrapper">
+            <h2>On This Page</h2>
+            <ol><li><a href="#relationships">Relationships</a><ul><li><a href="#relationships">Member Of</a></li></ul></li><li><a href="#initializers">Initializers</a><ul><li class="initializer"><a href="#motionmanager.properties.init(accelerometerupdateinterval:devicemotionupdateinterval:gyroupdateinterval:magnetometerupdateinterval:showsdevicemovementdisplay:)">init(accelerometer​Update​Interval:​device​Motion​Update​Interval:​gyro​Update​Interval:​magnetometer​Update​Interval:​shows​Device​Movement​Display:​)</a></li></ul></li><li><a href="#properties">Properties</a><ul><li class="variable"><a href="#motionmanager.properties.accelerometerupdateinterval">accelerometer​Update​Interval</a></li><li class="variable"><a href="#motionmanager.properties.devicemotionupdateinterval">device​Motion​Update​Interval</a></li><li class="variable"><a href="#motionmanager.properties.gyroupdateinterval">gyro​Update​Interval</a></li><li class="variable"><a href="#motionmanager.properties.magnetometerupdateinterval">magnetometer​Update​Interval</a></li><li class="variable"><a href="#motionmanager.properties.showsdevicemovementdisplay">shows​Device​Movement​Display</a></li></ul></li></ol>
+        </div>
+    </nav>
+
+    <main>
+        <article>
+            <h1>
+    <small>Structure</small>
+    <code class="name">Motion​Manager.​Properties</code>
+</h1>
+
+<html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">struct</span> <span class="type">Properties</span></code></pre></body></html>
+<section id="relationships">
+    <h2 hidden>Relationships</h2>
+        
+        <h3>Member Of</h3>
+<dl>
+    <dt class="structure"><code><a href="/swift-composable-architecture/MotionManager">MotionManager</a></code></dt>
+<dd><p>A wrapper around Core Motion's <code>CMMotionManager</code> that exposes its functionality through
+effects and actions, making it easy to use with the Composable Architecture, and easy to test.</p>
+</dd>
+</dl>
+</section>
+    <section id="initializers">
+        <h2>Initializers</h2>
+
+        <div role="article" class="initializer" id="motionmanager.properties.init(accelerometerupdateinterval:devicemotionupdateinterval:gyroupdateinterval:magnetometerupdateinterval:showsdevicemovementdisplay:)">
+    <h3>
+        <code>init(accelerometer​Update​Interval:​device​Motion​Update​Interval:​gyro​Update​Interval:​magnetometer​Update​Interval:​shows​Device​Movement​Display:​)</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">public</span> <span class="keyword">init</span>(<span class="variable">accelerometerUpdateInterval</span>: <span class="type">TimeInterval</span>? = <span class="keyword">nil</span>, <span class="variable">deviceMotionUpdateInterval</span>: <span class="type">TimeInterval</span>? = <span class="keyword">nil</span>, <span class="variable">gyroUpdateInterval</span>: <span class="type">TimeInterval</span>? = <span class="keyword">nil</span>, <span class="variable">magnetometerUpdateInterval</span>: <span class="type">TimeInterval</span>? = <span class="keyword">nil</span>, <span class="variable">showsDeviceMovementDisplay</span>: <span class="type">Bool</span>? = <span class="keyword">nil</span>)</code></pre></body></html>
+</div>
+    </section>
+    <section id="properties">
+        <h2>Properties</h2>
+
+        <div role="article" class="variable" id="motionmanager.properties.accelerometerupdateinterval">
+    <h3>
+        <code>accelerometer​Update​Interval</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">accelerometerUpdateInterval</span>: <span class="type">TimeInterval</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="motionmanager.properties.devicemotionupdateinterval">
+    <h3>
+        <code>device​Motion​Update​Interval</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">deviceMotionUpdateInterval</span>: <span class="type">TimeInterval</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="motionmanager.properties.gyroupdateinterval">
+    <h3>
+        <code>gyro​Update​Interval</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">gyroUpdateInterval</span>: <span class="type">TimeInterval</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="motionmanager.properties.magnetometerupdateinterval">
+    <h3>
+        <code>magnetometer​Update​Interval</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">magnetometerUpdateInterval</span>: <span class="type">TimeInterval</span>?</code></pre></body></html>
+</div>
+<div role="article" class="variable" id="motionmanager.properties.showsdevicemovementdisplay">
+    <h3>
+        <code>shows​Device​Movement​Display</code>
+    </h3>
+    <html><body><pre class="highlight"><code><span class="keyword">var</span> <span class="variable">showsDeviceMovementDisplay</span>: <span class="type">Bool</span>?</code></pre></body></html>
+</div>
+    </section>
+
+
+
+        </article>
+    </main>
+
+    <footer>
+        <p>
+    Generated on <time datetime="2020-10-29T17:12:19+0000">October 29, 2020</time> using <a href="https://github.com/SwiftDocOrg/swift-doc">swift-doc</a> <span class="version">1.0.0-beta.5</span>.
+</p>
+    </footer>
+</body>
+</html>
