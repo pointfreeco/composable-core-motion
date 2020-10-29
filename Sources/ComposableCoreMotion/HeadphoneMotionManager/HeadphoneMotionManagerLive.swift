@@ -113,7 +113,8 @@
     private static var dependencies: [AnyHashable: Dependencies] = [:]
 
     private static func requireHeadphoneMotionManager(id: AnyHashable)
-    -> CMHeadphoneMotionManager? {
+      -> CMHeadphoneMotionManager?
+    {
       if dependencies[id] == nil {
         couldNotFindHeadphoneMotionManager(id: id)
       }
@@ -121,8 +122,8 @@
     }
   }
 
-  private var deviceMotionUpdatesSubscribers: [AnyHashable: Effect<DeviceMotion, Error>.Subscriber]
-    = [:]
+  private var deviceMotionUpdatesSubscribers:
+    [AnyHashable: Effect<DeviceMotion, Error>.Subscriber] = [:]
 
   private func couldNotFindHeadphoneMotionManager(id: Any) {
     assertionFailure(
