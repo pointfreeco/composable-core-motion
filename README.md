@@ -21,7 +21,7 @@ Check out the [MotionManager](./Examples/MotionManager) demo to see ComposableCo
 To use ComposableCoreMotion your application, you can add an action to your feature's domain that represents the type of motion data you are interested in receiving. For example, if you only want motion updates, then you can add the following action:
 
 ```swift
-import ComposableCoreLocation
+import ComposableCoreMotion
 
 enum FeatureAction {
   case motionUpdate(Result<DeviceMotion, NSError>)
