@@ -10,9 +10,8 @@
 		5A405A2E244F410F002D4C76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A405A2D244F410F002D4C76 /* SceneDelegate.swift */; };
 		5A405A30244F410F002D4C76 /* MotionManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A405A2F244F410F002D4C76 /* MotionManagerView.swift */; };
 		5A405A32244F4110002D4C76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A405A31244F4110002D4C76 /* Assets.xcassets */; };
-		CA01F8932479B2FF004C5C0D /* ComposableCoreMotion in Frameworks */ = {isa = PBXBuildFile; productRef = CA01F8922479B2FF004C5C0D /* ComposableCoreMotion */; };
 		CA0F931F244FE3F000E85985 /* MotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0F931E244FE3F000E85985 /* MotionTests.swift */; };
-		DC1394122469E2E100EE1157 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = DC1394112469E2E100EE1157 /* ComposableArchitecture */; };
+		DCAE8C612641ADB700C409D7 /* ComposableCoreMotion in Frameworks */ = {isa = PBXBuildFile; productRef = DCAE8C602641ADB700C409D7 /* ComposableCoreMotion */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +56,7 @@
 		CA0F931C244FE3F000E85985 /* MotionManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MotionManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA0F931E244FE3F000E85985 /* MotionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionTests.swift; sourceTree = "<group>"; };
 		CA0F9320244FE3F000E85985 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCFC51472466F49B00A0B8CF /* swift-composable-architecture */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "swift-composable-architecture"; path = ../..; sourceTree = "<group>"; };
+		DCAE8C642641AF3900C409D7 /* composable-core-motion */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "composable-core-motion"; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA01F8932479B2FF004C5C0D /* ComposableCoreMotion in Frameworks */,
-				DC1394122469E2E100EE1157 /* ComposableArchitecture in Frameworks */,
+				DCAE8C612641ADB700C409D7 /* ComposableCoreMotion in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +81,7 @@
 		5A405A1F244F410F002D4C76 = {
 			isa = PBXGroup;
 			children = (
-				DCFC51472466F49B00A0B8CF /* swift-composable-architecture */,
+				DCAE8C642641AF3900C409D7 /* composable-core-motion */,
 				5A405A2A244F410F002D4C76 /* MotionManager */,
 				CA0F931D244FE3F000E85985 /* MotionManagerTests */,
 				5A405A29244F410F002D4C76 /* Products */,
@@ -145,8 +143,7 @@
 			);
 			name = MotionManager;
 			packageProductDependencies = (
-				DC1394112469E2E100EE1157 /* ComposableArchitecture */,
-				CA01F8922479B2FF004C5C0D /* ComposableCoreMotion */,
+				DCAE8C602641ADB700C409D7 /* ComposableCoreMotion */,
 			);
 			productName = MotionManager;
 			productReference = 5A405A28244F410F002D4C76 /* MotionManager.app */;
@@ -481,13 +478,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CA01F8922479B2FF004C5C0D /* ComposableCoreMotion */ = {
+		DCAE8C602641ADB700C409D7 /* ComposableCoreMotion */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ComposableCoreMotion;
-		};
-		DC1394112469E2E100EE1157 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
