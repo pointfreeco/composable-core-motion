@@ -33,13 +33,12 @@ import CoreMotion
 /// }
 /// ```
 ///
-/// Then, create a motion manager by returning an effect from our reducer. You can either do this
-/// when your feature starts up, such as when `onAppear` is invoked, or you can do it when a user
-/// action occurs, such as when the user taps a button.
+/// Then, start listening to a motion manager's updates by returning an effect from our reducer. You
+/// can either do this when your feature starts up, such as when `onAppear` is invoked, or you can
+/// do it when a user action occurs, such as when the user taps a button.
 ///
-/// As an example, say we want to create a motion manager and start listening for motion updates
-/// when a "Record" button is tapped. Then we can can do both of those things by executing two
-/// effects, one after the other:
+/// As an example, say we want to start listening for motion updates when a "Record" button is
+/// tapped.
 ///
 /// ```swift
 /// let featureReducer = Reducer<FeatureState, FeatureAction, FeatureEnvironment> {
@@ -90,17 +89,15 @@ import CoreMotion
 ///
 /// That is enough to implement a basic application that interacts with Core Motion.
 ///
-/// But the true power of building your application and interfacing with Core Motion this way is
-/// the ability to instantly _test_ how your application behaves with Core Motion. We start by
-/// creating a `TestStore` whose environment contains an `.unimplemented` version of the
-/// `MotionManager`. The `.unimplemented` function allows you to create a fully controlled version
-/// of the motion manager that does not deal with a real `CMMotionManager` at all. Instead, you
-/// override whichever endpoints your feature needs to supply deterministic functionality.
+/// But the true power of building your application and interfacing with Core Motion this way is the
+/// ability to instantly _test_ how your application behaves with Core Motion. We start by creating
+/// a `TestStore` whose environment contains an `.unimplemented` version of the `MotionManager`. The
+/// `.failing` motion manager allows you to override whichever endpoints your feature needs to
+/// supply deterministic functionality.
 ///
-/// For example, let's test that we property start the motion manager when we tap the record
-/// button, and that we compute the z-motion correctly, and further that we stop the motion
-/// manager when we tap the stop button. We can construct a `TestStore` with a mock motion manager
-/// that keeps track of when the manager is created and destroyed, and further we can even
+/// For example, let's test that we property start the motion manager when we tap the record button,
+/// and that we compute the z-motion correctly, and further that we stop the motion manager when we
+/// tap the stop button. We can construct a `TestStore` with a failing motion manager, and we can
 /// substitute in a subject that we control for device motion updates. This allows us to send any
 /// data we want to for the device motion.
 ///

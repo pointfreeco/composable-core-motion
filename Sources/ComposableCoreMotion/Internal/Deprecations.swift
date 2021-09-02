@@ -48,6 +48,16 @@ extension HeadphoneMotionManager {
 @available(tvOS, unavailable)
 @available(watchOS 2.0, *)
 extension MotionManager {
+  @available(*, deprecated, message: "This endpoint is no longer necessary.")
+  public func create(id: AnyHashable) -> Effect<Never, Never> {
+    .none
+  }
+
+  @available(*, deprecated, message: "This endpoint is no longer necessary.")
+  public func destroy(id: AnyHashable) -> Effect<Never, Never> {
+    .none
+  }
+
   @available(*, unavailable, message: "Use 'MotionManager.failing', instead")
   public static func unimplemented(
     accelerometerData: @escaping (AnyHashable) -> AccelerometerData? = { _ in
