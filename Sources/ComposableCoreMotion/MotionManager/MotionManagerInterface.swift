@@ -210,14 +210,13 @@ public struct MotionManager {
   /// Sets certain properties on the motion manager.
   public var set: (Properties) -> Effect<Never, Never>
 
-  public var startAccelerometerUpdates: (OperationQueue) -> Effect<AccelerometerData, Error>
+  public var startAccelerometerUpdates: () -> Effect<AccelerometerData, Error>
 
-  public var startDeviceMotionUpdates:
-    (CMAttitudeReferenceFrame, OperationQueue) -> Effect<DeviceMotion, Error>
+  public var startDeviceMotionUpdates: (CMAttitudeReferenceFrame) -> Effect<DeviceMotion, Error>
 
-  public var startGyroUpdates: (OperationQueue) -> Effect<GyroData, Error>
+  public var startGyroUpdates: () -> Effect<GyroData, Error>
 
-  public var startMagnetometerUpdates: (OperationQueue) -> Effect<MagnetometerData, Error>
+  public var startMagnetometerUpdates: () -> Effect<MagnetometerData, Error>
 
   /// Stops accelerometer updates.
   public var stopAccelerometerUpdates: () -> Effect<Never, Never>
@@ -247,11 +246,10 @@ public struct MotionManager {
     isMagnetometerAvailable: @escaping () -> Bool,
     magnetometerData: @escaping () -> MagnetometerData?,
     set: @escaping (Properties) -> Effect<Never, Never>,
-    startAccelerometerUpdates: @escaping (OperationQueue) -> Effect<AccelerometerData, Error>,
-    startDeviceMotionUpdates: @escaping (CMAttitudeReferenceFrame, OperationQueue) ->
-      Effect<DeviceMotion, Error>,
-    startGyroUpdates: @escaping (OperationQueue) -> Effect<GyroData, Error>,
-    startMagnetometerUpdates: @escaping (OperationQueue) -> Effect<MagnetometerData, Error>,
+    startAccelerometerUpdates: @escaping () -> Effect<AccelerometerData, Error>,
+    startDeviceMotionUpdates: @escaping (CMAttitudeReferenceFrame) -> Effect<DeviceMotion, Error>,
+    startGyroUpdates: @escaping () -> Effect<GyroData, Error>,
+    startMagnetometerUpdates: @escaping () -> Effect<MagnetometerData, Error>,
     stopAccelerometerUpdates: @escaping () -> Effect<Never, Never>,
     stopDeviceMotionUpdates: @escaping () -> Effect<Never, Never>,
     stopGyroUpdates: @escaping () -> Effect<Never, Never>,
@@ -281,45 +279,6 @@ public struct MotionManager {
     self.stopGyroUpdates = stopGyroUpdates
     self.stopMagnetometerUpdates = stopMagnetometerUpdates
   }
-
-  /// Starts accelerometer updates without a handler.
-  ///
-  /// Returns a long-living effect that emits accelerometer data each time the motion manager
-  /// receives a new value.
-  public func startAccelerometerUpdates(to queue: OperationQueue = .main)
-  -> Effect<AccelerometerData, Error> {
-    self.startAccelerometerUpdates(queue)
-  }
-
-  /// Starts device-motion updates without a block handler.
-  ///
-  /// Returns a long-living effect that emits device motion data each time the motion manager
-  /// receives a new value.
-  public func startDeviceMotionUpdates(
-    using referenceFrame: CMAttitudeReferenceFrame,
-    to queue: OperationQueue = .main
-  ) -> Effect<DeviceMotion, Error> {
-    self.startDeviceMotionUpdates(referenceFrame, queue)
-  }
-
-  /// Starts gyroscope updates without a handler.
-  ///
-  /// Returns a long-living effect that emits gyro data each time the motion manager receives a
-  /// new value.
-  public func startGyroUpdates(to queue: OperationQueue = .main) -> Effect<GyroData, Error> {
-    self.startGyroUpdates(queue)
-  }
-
-  /// Starts magnetometer updates without a block handler.
-  ///
-  /// Returns a long-living effect that emits magnetometer data each time the motion manager
-  /// receives a new value.
-  public func startMagnetometerUpdates(to queue: OperationQueue = .main)
-  -> Effect<MagnetometerData, Error> {
-    self.startMagnetometerUpdates(queue)
-  }
-
-
 
   /// Sets certain properties on the motion manager.
   public func set(

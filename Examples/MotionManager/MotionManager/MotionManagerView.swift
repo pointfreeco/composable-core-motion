@@ -86,7 +86,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
     switch state.isRecording {
     case true:
       return environment.motionManager
-        .startDeviceMotionUpdates(using: .xArbitraryZVertical, to: .main)
+        .startDeviceMotionUpdates(.xArbitraryZVertical)
         .mapError { $0 as NSError }
         .catchToEffect()
         .map(AppAction.motionUpdate)
@@ -161,7 +161,7 @@ struct AppView_Previews: PreviewProvider {
     var isStarted = false
     var mockMotionManager = MotionManager.failing
     mockMotionManager.deviceMotion = { nil }
-    mockMotionManager.startDeviceMotionUpdates = { _, _ in
+    mockMotionManager.startDeviceMotionUpdates = { _ in
       isStarted = true
       return Timer.publish(every: 0.01, on: .main, in: .default)
         .autoconnect()

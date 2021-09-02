@@ -19,7 +19,7 @@ class MotionTests: XCTestCase {
     let motionSubject = PassthroughSubject<DeviceMotion, Error>()
 
     store.environment.motionManager.deviceMotion = { nil }
-    store.environment.motionManager.startDeviceMotionUpdates = { _, _ in
+    store.environment.motionManager.startDeviceMotionUpdates = { _ in
       motionSubject.eraseToEffect()
     }
     store.environment.motionManager.stopDeviceMotionUpdates = {
@@ -74,7 +74,7 @@ class MotionTests: XCTestCase {
     updatedDeviceMotion.attitude = .init(quaternion: .init(x: 0, y: 0, z: 1, w: 0))
 
     store.environment.motionManager.deviceMotion = { initialDeviceMotion }
-    store.environment.motionManager.startDeviceMotionUpdates = { _, _ in
+    store.environment.motionManager.startDeviceMotionUpdates = { _ in
       motionSubject.eraseToEffect()
     }
     store.environment.motionManager.stopDeviceMotionUpdates = {

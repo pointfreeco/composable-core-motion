@@ -21,7 +21,7 @@ extension HeadphoneMotionManager {
       XCTFail("A failing endpoint was accessed: 'HeadphoneMotionManager.isDeviceMotionAvailable'")
       return false
     },
-    startDeviceMotionUpdates: { _ in .failing("HeadphoneMotionManager.startDeviceMotionUpdates") },
+    startDeviceMotionUpdates: { .failing("HeadphoneMotionManager.startDeviceMotionUpdates") },
     stopDeviceMotionUpdates: { .failing("HeadphoneMotionManager.stopDeviceMotionUpdates") }
   )
 }

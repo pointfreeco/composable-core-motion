@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 
 import PackageDescription
 
@@ -7,7 +7,6 @@ let package = Package(
   platforms: [
     .iOS(.v13),
     .macOS(.v10_15),
-    .tvOS(.v13),
     .watchOS(.v6),
   ],
   products: [
@@ -17,7 +16,7 @@ let package = Package(
     )
   ],
   dependencies: [
-    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.9.0")
+    .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.21.0")
   ],
   targets: [
     .target(

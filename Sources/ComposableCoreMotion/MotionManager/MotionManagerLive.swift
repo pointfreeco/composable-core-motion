@@ -8,7 +8,10 @@ import CoreMotion
 @available(tvOS, unavailable)
 @available(watchOS 2, *)
 extension MotionManager {
-  public static func live(rawValue manager: CMMotionManager = .init()) -> Self {
+  public static func live(
+    rawValue manager: CMMotionManager = .init(),
+    queue: OperationQueue = .main
+  ) -> Self {
     Self(
       accelerometerData: { manager.accelerometerData.map(AccelerometerData.init) },
       attitudeReferenceFrame: { manager.attitudeReferenceFrame },
@@ -43,7 +46,7 @@ extension MotionManager {
           }
         }
       },
-      startAccelerometerUpdates: { queue in
+      startAccelerometerUpdates: {
         Effect.run { subscriber in
           manager.startAccelerometerUpdates(to: queue) { data, error in
             if let data = data {
@@ -55,7 +58,7 @@ extension MotionManager {
           return AnyCancellable {}
         }
       },
-      startDeviceMotionUpdates: { frame, queue in
+      startDeviceMotionUpdates: { frame in
         return Effect.run { subscriber in
           manager.startDeviceMotionUpdates(using: frame, to: queue) { data, error in
             if let data = data {
@@ -67,7 +70,7 @@ extension MotionManager {
           return AnyCancellable {}
         }
       },
-      startGyroUpdates: { queue in
+      startGyroUpdates: {
         Effect.run { subscriber in
           manager.startGyroUpdates(to: queue) { data, error in
             if let data = data {
@@ -79,7 +82,7 @@ extension MotionManager {
           return AnyCancellable {}
         }
       },
-      startMagnetometerUpdates: { queue in
+      startMagnetometerUpdates: {
         Effect.run { subscriber in
           manager.startMagnetometerUpdates(to: queue) { data, error in
             if let data = data {

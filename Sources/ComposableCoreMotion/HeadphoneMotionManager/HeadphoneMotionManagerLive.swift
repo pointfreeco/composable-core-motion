@@ -9,7 +9,7 @@
   @available(tvOS, unavailable)
   @available(watchOS 7, *)
   extension HeadphoneMotionManager {
-    public static var live: Self {
+    public static func live(queue: OperationQueue = .main) -> Self {
       let manager = CMHeadphoneMotionManager()
 
       let delegate = Effect<Action, Never>.run { subscriber in
@@ -28,7 +28,7 @@
         deviceMotion: { manager.deviceMotion.map(DeviceMotion.init) },
         isDeviceMotionActive: { manager.isDeviceMotionActive },
         isDeviceMotionAvailable: { manager.isDeviceMotionAvailable },
-        startDeviceMotionUpdates: { queue in
+        startDeviceMotionUpdates: {
           Effect.run { subscriber in
             manager.startDeviceMotionUpdates(to: queue) { data, error in
               if let data = data {

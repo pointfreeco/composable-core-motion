@@ -10,7 +10,6 @@ import CoreMotion
 @available(tvOS, unavailable)
 @available(watchOS 7, *)
 public struct HeadphoneMotionManager {
-
   /// Actions that correspond to `CMHeadphoneMotionManagerDelegate` methods.
   ///
   /// See `CMHeadphoneMotionManagerDelegate` for more information.
@@ -36,7 +35,7 @@ public struct HeadphoneMotionManager {
   ///
   /// Returns a long-living effect that emits device motion data each time the headphone motion
   /// manager receives a new value.
-  var startDeviceMotionUpdates: (OperationQueue) -> Effect<DeviceMotion, Error>
+  var startDeviceMotionUpdates: () -> Effect<DeviceMotion, Error>
 
   /// Stops device-motion updates.
   var stopDeviceMotionUpdates: () -> Effect<Never, Never>
@@ -46,8 +45,7 @@ public struct HeadphoneMotionManager {
     deviceMotion: @escaping () -> DeviceMotion?,
     isDeviceMotionActive: @escaping () -> Bool,
     isDeviceMotionAvailable: @escaping () -> Bool,
-    startDeviceMotionUpdates: @escaping (OperationQueue) ->
-      Effect<DeviceMotion, Error>,
+    startDeviceMotionUpdates: @escaping () -> Effect<DeviceMotion, Error>,
     stopDeviceMotionUpdates: @escaping () -> Effect<Never, Never>
   ) {
     self.delegate = delegate
