@@ -1,4 +1,4 @@
-#if canImport(CoreMotion) && compiler(>=5.3) && (os(iOS) || os(watchOS) || targetEnvironment(macCatalyst))
+#if compiler(>=5.3) && (os(iOS) || os(watchOS) || targetEnvironment(macCatalyst))
   import Combine
   import ComposableArchitecture
   import CoreMotion
