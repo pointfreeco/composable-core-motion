@@ -1,6 +1,5 @@
 PLATFORM_IOS = iOS Simulator,name=iPhone 11 Pro Max
 PLATFORM_MACOS = macOS
-PLATFORM_TVOS = tvOS Simulator,name=Apple TV 4K (at 1080p)
 PLATFORM_WATCHOS = watchOS Simulator,name=Apple Watch Series 4 - 44mm
 
 default: test
@@ -12,9 +11,6 @@ test:
 	xcodebuild test \
 		-scheme ComposableCoreMotion \
 		-destination platform="$(PLATFORM_MACOS)"
-	xcodebuild test \
-		-scheme ComposableCoreMotion \
-		-destination platform="$(PLATFORM_TVOS)"
 	xcodebuild \
 		-scheme ComposableCoreMotion_watchOS \
 		-destination platform="$(PLATFORM_WATCHOS)"
