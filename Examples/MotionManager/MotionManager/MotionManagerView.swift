@@ -41,8 +41,6 @@ struct AppEnvironment {
 }
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
-  struct MotionManagerId: Hashable {}
-
   switch action {
   case .alertDismissed:
     state.alert = nil
@@ -50,17 +48,19 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
 
   case .motionUpdate(.failure):
     state.alert = .init(
-      title: """
+      title: TextState(
+        """
         We encountered a problem with the motion manager. Make sure you run this demo on a real \
         device, not the simulator.
-        """)
+        """
+      )
+    )
     state.isRecording = false
     return .none
 
   case let .motionUpdate(.success(motion)):
-    state.initialAttitude =
-      state.initialAttitude
-      ?? environment.motionManager.deviceMotion(id: MotionManagerId())?.attitude
+    state.initialAttitude = state.initialAttitude
+      ?? environment.motionManager.deviceMotion()?.attitude
 
     if let initialAttitude = state.initialAttitude {
       let newAttitude = motion.attitude.multiply(byInverseOf: initialAttitude)
@@ -85,30 +85,18 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, e
 
     switch state.isRecording {
     case true:
-      return .concatenate(
-        environment.motionManager
-          .create(id: MotionManagerId())
-          .fireAndForget(),
-
-        environment.motionManager
-          .startDeviceMotionUpdates(id: MotionManagerId(), using: .xArbitraryZVertical, to: .main)
-          .mapError { $0 as NSError }
-          .catchToEffect()
-          .map(AppAction.motionUpdate)
-      )
+      return environment.motionManager
+        .startDeviceMotionUpdates(using: .xArbitraryZVertical, to: .main)
+        .mapError { $0 as NSError }
+        .catchToEffect()
+        .map(AppAction.motionUpdate)
 
     case false:
       state.initialAttitude = nil
       state.facingDirection = nil
-      return .concatenate(
-        environment.motionManager
-          .stopDeviceMotionUpdates(id: MotionManagerId())
-          .fireAndForget(),
-
-        environment.motionManager
-          .destroy(id: MotionManagerId())
-          .fireAndForget()
-      )
+      return environment.motionManager
+        .stopDeviceMotionUpdates()
+        .fireAndForget()
     }
   }
 }
@@ -171,33 +159,31 @@ struct AppView_Previews: PreviewProvider {
     // Since MotionManager isn't usable in SwiftUI previews or simulators we create one that just
     // sends a bunch of data on some sine curves.
     var isStarted = false
-    let mockMotionManager = MotionManager.unimplemented(
-      create: { _ in .fireAndForget {} },
-      destroy: { _ in .fireAndForget {} },
-      deviceMotion: { _ in nil },
-      startDeviceMotionUpdates: { _, _, _ in
-        isStarted = true
-        return Timer.publish(every: 0.01, on: .main, in: .default)
-          .autoconnect()
-          .filter { _ in isStarted }
-          .map { $0.timeIntervalSince1970 * 2 }
-          .map { t in
-            DeviceMotion(
-              attitude: .init(quaternion: .init(x: 1, y: 0, z: 0, w: 0)),
-              gravity: .init(x: sin(2 * t), y: -cos(-t), z: sin(3 * t)),
-              heading: 0,
-              magneticField: .init(field: .init(x: 0, y: 0, z: 0), accuracy: .high),
-              rotationRate: CMRotationRate.init(x: 0, y: 0, z: 0),
-              timestamp: Date().timeIntervalSince1970,
-              userAcceleration: .init(x: -cos(-3 * t), y: sin(2 * t), z: -cos(t))
-            )
-          }
-          .setFailureType(to: Error.self)
-          .eraseToEffect()
-      },
-      stopDeviceMotionUpdates: { _ in
-        .fireAndForget { isStarted = false }
-      })
+    var mockMotionManager = MotionManager.failing
+    mockMotionManager.deviceMotion = { nil }
+    mockMotionManager.startDeviceMotionUpdates = { _, _ in
+      isStarted = true
+      return Timer.publish(every: 0.01, on: .main, in: .default)
+        .autoconnect()
+        .filter { _ in isStarted }
+        .map { $0.timeIntervalSince1970 * 2 }
+        .map { t in
+          DeviceMotion(
+            attitude: .init(quaternion: .init(x: 1, y: 0, z: 0, w: 0)),
+            gravity: .init(x: sin(2 * t), y: -cos(-t), z: sin(3 * t)),
+            heading: 0,
+            magneticField: .init(field: .init(x: 0, y: 0, z: 0), accuracy: .high),
+            rotationRate: CMRotationRate.init(x: 0, y: 0, z: 0),
+            timestamp: Date().timeIntervalSince1970,
+            userAcceleration: .init(x: -cos(-3 * t), y: sin(2 * t), z: -cos(t))
+          )
+        }
+        .setFailureType(to: Error.self)
+        .eraseToEffect()
+    }
+    mockMotionManager.stopDeviceMotionUpdates = {
+      .fireAndForget { isStarted = false }
+    }
 
     return AppView(
       store: Store(
