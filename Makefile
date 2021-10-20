@@ -14,7 +14,7 @@ test:
 	xcodebuild \
 		-scheme ComposableCoreMotion_watchOS \
 		-destination platform="$(PLATFORM_WATCHOS)"
-	cd Examples/MotionManager
+	cd Examples/MotionManager \
 		&& xcodebuild test \
 		-scheme MotionManager \
 		-destination platform="$(PLATFORM_IOS)"
