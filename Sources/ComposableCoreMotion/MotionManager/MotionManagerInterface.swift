@@ -296,6 +296,12 @@ public struct MotionManager {
     )
   }
 
+  public func startDeviceMotionUpdates(
+    using referenceFrame: CMAttitudeReferenceFrame = []
+  ) -> Effect<DeviceMotion, Error> {
+    self.startDeviceMotionUpdates(referenceFrame)
+  }
+
   public struct Properties {
     public var accelerometerUpdateInterval: TimeInterval?
     public var deviceMotionUpdateInterval: TimeInterval?
