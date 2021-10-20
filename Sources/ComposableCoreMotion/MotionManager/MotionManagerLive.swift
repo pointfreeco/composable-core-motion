@@ -244,9 +244,8 @@ extension MotionManager {
 
 private var accelerometerUpdatesSubscribers:
   [AnyHashable: Effect<AccelerometerData, Error>.Subscriber] = [:]
-private var deviceMotionUpdatesSubscribers:
-  [AnyHashable: Effect<DeviceMotion, Error>.Subscriber] =
-    [:]
+private var deviceMotionUpdatesSubscribers: [AnyHashable: Effect<DeviceMotion, Error>.Subscriber] =
+  [:]
 private var deviceGyroUpdatesSubscribers: [AnyHashable: Effect<GyroData, Error>.Subscriber] = [:]
 private var deviceMagnetometerUpdatesSubscribers:
   [AnyHashable: Effect<MagnetometerData, Error>.Subscriber] = [:]
