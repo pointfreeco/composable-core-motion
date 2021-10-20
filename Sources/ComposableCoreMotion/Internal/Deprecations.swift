@@ -1,11 +1,64 @@
 import ComposableArchitecture
 
+// NB: Deprecated after 0.1.1
+
+@available(iOS 14, *)
+@available(macCatalyst 14, *)
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS 7, *)
+extension HeadphoneMotionManager {
+  @available(*, deprecated, message: "Use 'Effect.cancellable' and 'Effect.cancel' to manage the lifecycle of 'HeadphoneMotionManager.delegate'")
+  public func create(id: AnyHashable) -> Effect<HeadphoneMotionManager.Action, Never> {
+    self.delegate()
+      .eraseToEffect()
+      .cancellable(id: id)
+  }
+
+  @available(*, deprecated, message: "Use 'Effect.cancellable' and 'Effect.cancel' to manage the lifecycle of 'HeadphoneMotionManager.delegate'")
+  public func destroy(id: AnyHashable) -> Effect<Never, Never> {
+    .cancel(id: id)
+  }
+
+  @available(*, unavailable, message: "Use 'HeadphoneMotionManager.failing', instead")
+  public static func unimplemented(
+    create: @escaping (AnyHashable) -> Effect<Action, Never> = { _ in _unimplemented("create") },
+    destroy: @escaping (AnyHashable) -> Effect<Never, Never> = { _ in _unimplemented("destroy") },
+    deviceMotion: @escaping (AnyHashable) -> DeviceMotion? = { _ in _unimplemented("deviceMotion")
+    },
+    isDeviceMotionActive: @escaping (AnyHashable) -> Bool = { _ in
+      _unimplemented("isDeviceMotionActive")
+    },
+    isDeviceMotionAvailable: @escaping (AnyHashable) -> Bool = { _ in
+      _unimplemented("isDeviceMotionAvailable")
+    },
+    startDeviceMotionUpdates: @escaping (AnyHashable, OperationQueue) ->
+      Effect<DeviceMotion, Error> = { _, _ in _unimplemented("startDeviceMotionUpdates") },
+    stopDeviceMotionUpdates: @escaping (AnyHashable) -> Effect<Never, Never> = { _ in
+      _unimplemented("stopDeviceMotionUpdates")
+    }
+  ) -> HeadphoneMotionManager {
+    fatalError()
+  }
+}
+
 @available(iOS 4.0, *)
 @available(macCatalyst 13.0, *)
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS 2.0, *)
 extension MotionManager {
+  @available(*, deprecated, message: "This endpoint is no longer necessary.")
+  public func create(id: AnyHashable) -> Effect<Never, Never> {
+    .none
+  }
+
+  @available(*, deprecated, message: "This endpoint is no longer necessary.")
+  public func destroy(id: AnyHashable) -> Effect<Never, Never> {
+    .none
+  }
+
+  @available(*, unavailable, message: "Use 'MotionManager.failing', instead")
   public static func unimplemented(
     accelerometerData: @escaping (AnyHashable) -> AccelerometerData? = { _ in
       _unimplemented("accelerometerData")
@@ -72,32 +125,6 @@ extension MotionManager {
       _unimplemented("stopMagnetometerUpdates")
     }
   ) -> MotionManager {
-    Self(
-      accelerometerData: accelerometerData,
-      attitudeReferenceFrame: attitudeReferenceFrame,
-      availableAttitudeReferenceFrames: availableAttitudeReferenceFrames,
-      create: create,
-      destroy: destroy,
-      deviceMotion: deviceMotion,
-      gyroData: gyroData,
-      isAccelerometerActive: isAccelerometerActive,
-      isAccelerometerAvailable: isAccelerometerAvailable,
-      isDeviceMotionActive: isDeviceMotionActive,
-      isDeviceMotionAvailable: isDeviceMotionAvailable,
-      isGyroActive: isGyroActive,
-      isGyroAvailable: isGyroAvailable,
-      isMagnetometerActive: isMagnetometerActive,
-      isMagnetometerAvailable: isMagnetometerAvailable,
-      magnetometerData: magnetometerData,
-      set: set,
-      startAccelerometerUpdates: startAccelerometerUpdates,
-      startDeviceMotionUpdates: startDeviceMotionUpdates,
-      startGyroUpdates: startGyroUpdates,
-      startMagnetometerUpdates: startMagnetometerUpdates,
-      stopAccelerometerUpdates: stopAccelerometerUpdates,
-      stopDeviceMotionUpdates: stopDeviceMotionUpdates,
-      stopGyroUpdates: stopGyroUpdates,
-      stopMagnetometerUpdates: stopMagnetometerUpdates
-    )
+    fatalError()
   }
 }

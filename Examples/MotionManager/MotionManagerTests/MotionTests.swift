@@ -8,25 +8,23 @@ import XCTest
 
 class MotionTests: XCTestCase {
   func testMotionUpdate() {
-    let motionSubject = PassthroughSubject<DeviceMotion, Error>()
-
-    var motionManagerIsLive = false
-
     let store = TestStore(
       initialState: .init(),
       reducer: appReducer,
       environment: .init(
-        motionManager: .unimplemented(
-          create: { _ in .fireAndForget { motionManagerIsLive = true } },
-          destroy: { _ in .fireAndForget { motionManagerIsLive = false } },
-          deviceMotion: { _ in nil },
-          startDeviceMotionUpdates: { _, _, _ in motionSubject.eraseToEffect() },
-          stopDeviceMotionUpdates: { _ in
-            .fireAndForget { motionSubject.send(completion: .finished) }
-          }
-        )
+        motionManager: .failing
       )
     )
+
+    let motionSubject = PassthroughSubject<DeviceMotion, Error>()
+
+    store.environment.motionManager.deviceMotion = { nil }
+    store.environment.motionManager.startDeviceMotionUpdates = { _ in
+      motionSubject.eraseToEffect()
+    }
+    store.environment.motionManager.stopDeviceMotionUpdates = {
+      .fireAndForget { motionSubject.send(completion: .finished) }
+    }
 
     let deviceMotion = DeviceMotion(
       attitude: .init(quaternion: .init(x: 1, y: 0, z: 0, w: 0)),
@@ -38,27 +36,30 @@ class MotionTests: XCTestCase {
       userAcceleration: CMAcceleration(x: 4, y: 5, z: 6)
     )
 
-    store.assert(
-      .send(.recordingButtonTapped) {
-        $0.isRecording = true
-        XCTAssertEqual(motionManagerIsLive, true)
-      },
+    store.send(.recordingButtonTapped) {
+      $0.isRecording = true
+    }
 
-      .do { motionSubject.send(deviceMotion) },
-      .receive(.motionUpdate(.success(deviceMotion))) {
-        $0.z = [32]
-      },
+    motionSubject.send(deviceMotion)
+    store.receive(.motionUpdate(.success(deviceMotion))) {
+      $0.z = [32]
+    }
 
-      .send(.recordingButtonTapped) {
-        $0.isRecording = false
-        XCTAssertEqual(motionManagerIsLive, false)
-      }
-    )
+    store.send(.recordingButtonTapped) {
+      $0.isRecording = false
+    }
   }
 
   func testFacingDirection() {
+    let store = TestStore(
+      initialState: .init(),
+      reducer: appReducer,
+      environment: .init(
+        motionManager: .failing
+      )
+    )
+
     let motionSubject = PassthroughSubject<DeviceMotion, Error>()
-    var motionManagerIsLive = false
 
     let initialDeviceMotion = DeviceMotion(
       attitude: .init(quaternion: .init(x: 1, y: 0, z: 0, w: 0)),
@@ -72,47 +73,35 @@ class MotionTests: XCTestCase {
     var updatedDeviceMotion = initialDeviceMotion
     updatedDeviceMotion.attitude = .init(quaternion: .init(x: 0, y: 0, z: 1, w: 0))
 
-    let store = TestStore(
-      initialState: .init(),
-      reducer: appReducer,
-      environment: .init(
-        motionManager: .unimplemented(
-          create: { _ in .fireAndForget { motionManagerIsLive = true } },
-          destroy: { _ in .fireAndForget { motionManagerIsLive = false } },
-          deviceMotion: { _ in initialDeviceMotion },
-          startDeviceMotionUpdates: { _, _, _ in motionSubject.eraseToEffect() },
-          stopDeviceMotionUpdates: { _ in
-            .fireAndForget { motionSubject.send(completion: .finished) }
-          }
-        )
-      )
-    )
+    store.environment.motionManager.deviceMotion = { initialDeviceMotion }
+    store.environment.motionManager.startDeviceMotionUpdates = { _ in
+      motionSubject.eraseToEffect()
+    }
+    store.environment.motionManager.stopDeviceMotionUpdates = {
+      .fireAndForget { motionSubject.send(completion: .finished) }
+    }
 
-    store.assert(
-      .send(.recordingButtonTapped) {
-        $0.isRecording = true
-        XCTAssertEqual(motionManagerIsLive, true)
-      },
+    store.send(.recordingButtonTapped) {
+      $0.isRecording = true
+    }
 
-      .do { motionSubject.send(initialDeviceMotion) },
-      .receive(.motionUpdate(.success(initialDeviceMotion))) {
-        $0.facingDirection = .forward
-        $0.initialAttitude = initialDeviceMotion.attitude
-        $0.z = [0]
-      },
+    motionSubject.send(initialDeviceMotion)
+    store.receive(.motionUpdate(.success(initialDeviceMotion))) {
+      $0.facingDirection = .forward
+      $0.initialAttitude = initialDeviceMotion.attitude
+      $0.z = [0]
+    }
 
-      .do { motionSubject.send(updatedDeviceMotion) },
-      .receive(.motionUpdate(.success(updatedDeviceMotion))) {
-        $0.z = [0, 0]
-        $0.facingDirection = .backward
-      },
+    motionSubject.send(updatedDeviceMotion)
+    store.receive(.motionUpdate(.success(updatedDeviceMotion))) {
+      $0.z = [0, 0]
+      $0.facingDirection = .backward
+    }
 
-      .send(.recordingButtonTapped) {
-        $0.facingDirection = nil
-        $0.initialAttitude = nil
-        $0.isRecording = false
-        XCTAssertEqual(motionManagerIsLive, false)
-      }
-    )
+    store.send(.recordingButtonTapped) {
+      $0.facingDirection = nil
+      $0.initialAttitude = nil
+      $0.isRecording = false
+    }
   }
 }

@@ -44,31 +44,21 @@ struct FeatureEnvironment {
 }
 ```
 
-Then, create a motion manager by returning an effect from our reducer. You can either do this when your feature starts up, such as when `onAppear` is invoked, or you can do it when a user action occurs, such as when the user taps a button.
+Then, start listening to a motion manager's updates by returning an effect from our reducer. You can either do this when your feature starts up, such as when `onAppear` is invoked, or you can do it when a user action occurs, such as when the user taps a button.
 
-As an example, say we want to create a motion manager and start listening for motion updates when a "Record" button is tapped. Then we can can do both of those things by executing two effects, one after the other:
+As an example, say we want to start listening for motion updates when a "Record" button is tapped.
 
 ```swift
 let featureReducer = Reducer<FeatureState, FeatureAction, FeatureEnvironment> {
   state, action, environment in
 
-  // A unique identifier for our location manager, just in case we want to use
-  // more than one in our application.
-  struct MotionManagerId: Hashable {}
-
   switch action {
   case .recordingButtonTapped:
-    return .concatenate(
-      environment.motionManager
-        .create(id: MotionManagerId())
-        .fireAndForget(),
-
-      environment.motionManager
-        .startDeviceMotionUpdates(id: MotionManagerId(), using: .xArbitraryZVertical, to: .main)
-        .mapError { $0 as NSError }
-        .catchToEffect()
-        .map(AppAction.motionUpdate)
-    )
+    return environment.motionManager
+      .startDeviceMotionUpdates(.xArbitraryZVertical)
+      .mapError { $0 as NSError }
+      .catchToEffect()
+      .map(AppAction.motionUpdate)
 
   ...
   }
@@ -89,26 +79,20 @@ case let .motionUpdate(.failure(error)):
   // Do something with the motion update failure, like show an alert.
 ```
 
-And then later, if you want to stop receiving motion updates, such as when a "Stop" button is tapped, we can execute an effect to stop the motion manager, and even fully destroy it if we don't need the manager anymore:
+And then later, if you want to stop receiving motion updates, such as when a "Stop" button is tapped, we can execute an effect to stop the motion manager:
 
 ```swift
 case .stopButtonTapped:
-  return .concatenate(
-    environment.motionManager
-      .stopDeviceMotionUpdates(id: MotionManagerId())
-      .fireAndForget(),
-
-    environment.motionManager
-      .destroy(id: MotionManagerId())
-      .fireAndForget()
-  )
+  return environment.motionManager
+    .stopDeviceMotionUpdates()
+    .fireAndForget()
 ```
 
 That is enough to implement a basic application that interacts with Core Motion.
 
-But the true power of building your application and interfacing with Core Motion this way is the ability to instantly _test_ how your application behaves with Core Motion. We start by creating a `TestStore` whose environment contains an `.unimplemented` version of the `MotionManager`. The `.unimplemented` function allows you to create a fully controlled version of the motion manager that does not deal with a real `CMMotionManager` at all. Instead, you override whichever endpoints your feature needs to supply deterministic functionality.
+But the true power of building your application and interfacing with Core Motion this way is the ability to instantly _test_ how your application behaves with Core Motion. We start by creating a `TestStore` whose environment contains an `.unimplemented` version of the `MotionManager`. The `.failing` motion manager allows you to override whichever endpoints your feature needs to supply deterministic functionality.
 
-For example, let's test that we property start the motion manager when we tap the record button, and that we compute the z-motion correctly, and further that we stop the motion manager when we tap the stop button. We can construct a `TestStore` with a mock motion manager that keeps track of when the manager is created and destroyed, and further we can even substitute in a subject that we control for device motion updates. This allows us to send any data we want to for the device motion.
+For example, let's test that we property start the motion manager when we tap the record button, and that we compute the z-motion correctly, and further that we stop the motion manager when we tap the stop button. We can construct a `TestStore` with a failing motion manager, and we can substitute in a subject that we control for device motion updates. This allows us to send any data we want to for the device motion.
 
 ```swift
 func testFeature() {
@@ -119,16 +103,17 @@ func testFeature() {
     initialState: .init(),
     reducer: appReducer,
     environment: .init(
-      motionManager: .unimplemented(
-        create: { _ in .fireAndForget { motionManagerIsLive = true } },
-        destroy: { _ in .fireAndForget { motionManagerIsLive = false } },
-        startDeviceMotionUpdates: { _, _, _ in motionSubject.eraseToEffect() },
-        stopDeviceMotionUpdates: { _ in
-          .fireAndForget { motionSubject.send(completion: .finished) }
-        }
-      )
+      motionManager: .failing
     )
   )
+  
+  store.environment.motionManager.startDeviceMotionUpdates = { _ in 
+    motionSubject.eraseToEffect()
+  }
+  store.environment.motionManager.stopDeviceMotionUpdates: { _ in
+    .fireAndForget { motionSubject.send(completion: .finished) }
+  }
+
 }
 ```
 
@@ -145,18 +130,14 @@ let deviceMotion = DeviceMotion(
   userAcceleration: CMAcceleration(x: 4, y: 5, z: 6)
 )
 
-store.assert(
-  .send(.recordingButtonTapped) {
-    XCTAssertEqual(motionManagerIsLive, true)
-  },
-  .do { motionSubject.send(deviceMotion) },
-  .receive(.motionUpdate(.success(deviceMotion))) {
-    $0.zs = [32]
-  },
-  .send(.stopButtonTapped) {
-    XCTAssertEqual(motionManagerIsLive, false)
-  }
-)
+store.send(.recordingButtonTapped)
+
+motionSubject.send(deviceMotion)
+store.receive(.motionUpdate(.success(deviceMotion))) {
+  $0.zs = [32]
+}
+
+store.send(.stopButtonTapped)
 ```
 
 This is only the tip of the iceberg. We can access any part of the `CMMotionManager` API in this way, and instantly unlock testability with how the motion functionality integrates with our core application logic. This can be incredibly powerful, and is typically not the kind of thing one can test easily.
