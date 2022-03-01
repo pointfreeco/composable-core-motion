@@ -24,26 +24,19 @@
     public var rotationMatrix: CMRotationMatrix {
       let q = self.quaternion
 
-      let s =
-        1
-        / (self.quaternion.w * self.quaternion.w
-          + self.quaternion.x * self.quaternion.x
-          + self.quaternion.y * self.quaternion.y
-          + self.quaternion.z * self.quaternion.z)
-
       var matrix = CMRotationMatrix()
+        
+      matrix.m11 = 1 - 2 * (q.y * q.y + q.z * q.z)
+      matrix.m12 = 2 * (q.x * q.y + q.z * q.w)
+      matrix.m13 = 2 * (q.x * q.z - q.y * q.w)
 
-      matrix.m11 = 1 - 2 * s * (q.y * q.y + q.z * q.z)
-      matrix.m12 = 2 * s * (q.x * q.y - q.z * q.w)
-      matrix.m13 = 2 * s * (q.x * q.z + q.y * q.w)
+      matrix.m21 = 2 * (q.x * q.y - q.z * q.w)
+      matrix.m22 = 1 - 2 * (q.x * q.x + q.z * q.z)
+      matrix.m23 = 2 * (q.y * q.z + q.x * q.w)
 
-      matrix.m21 = 2 * s * (q.x * q.y + q.z * q.w)
-      matrix.m22 = 1 - 2 * s * (q.x * q.x + q.z * q.z)
-      matrix.m23 = 2 * s * (q.y * q.z - q.x * q.w)
-
-      matrix.m31 = 2 * s * (q.x * q.z - q.y * q.w)
-      matrix.m32 = 2 * s * (q.y * q.z + q.x * q.w)
-      matrix.m33 = 1 - 2 * s * (q.x * q.x + q.y * q.y)
+      matrix.m31 = 2 * (q.x * q.z + q.y * q.w)
+      matrix.m32 = 2 * (q.y * q.z - q.x * q.w)
+      matrix.m33 = 1 - 2 * (q.x * q.x + q.y * q.y)
 
       return matrix
     }
