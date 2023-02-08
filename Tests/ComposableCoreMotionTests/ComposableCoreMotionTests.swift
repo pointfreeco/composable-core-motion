@@ -31,12 +31,12 @@ class ComposableCoreMotionTests: XCTestCase {
     let q3 = Attitude(quaternion: .init(x: 0, y: 0, z: 1, w: 0))
     let q4 = Attitude(quaternion: .init(x: 0, y: 0, z: 0, w: 1))
 
-    XCTAssertEqual(q1.roll, Double.pi)
-    XCTAssertEqual(q1.pitch, 0)
+    XCTAssertEqual(q1.roll, 0)
+    XCTAssertEqual(q1.pitch, Double.pi)
     XCTAssertEqual(q1.yaw, 0)
 
-    XCTAssertEqual(q2.roll, Double.pi)
-    XCTAssertEqual(q2.pitch, 0)
+    XCTAssertEqual(q2.roll, 0)
+    XCTAssertEqual(q2.pitch, Double.pi)
     XCTAssertEqual(q2.yaw, Double.pi)
 
     XCTAssertEqual(q3.roll, 0)
